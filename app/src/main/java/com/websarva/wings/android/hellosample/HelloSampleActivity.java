@@ -14,30 +14,45 @@ public class HelloSampleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hello_sample);
 
-        // 表示ボタンであるButtonオブジェクトを取得
         Button btClick = findViewById(R.id.btClick);
-        // リスナクラスのインスタンスを作成
-        HelloListener listener = new HelloListener();
-        // 表示ボタンにリスナを設定
-        btClick.sentOnClickListener(listener);
 
+        HelloListener listener = new HelloListener();
+
+        btClick.setOnClickListener(listener);
+
+        Button btClear = findViewById(R.id.btClear);
+
+        btClear.setOnClickListener(listener);
     }
 
-    /**
-     * ボタンをクリックしたときのリスナクラス。
-     */
-    private class HelloListener implements View.OnClickListener{
+    private class HelloListener implements View.OnClickListener {
 
         @Override
-        public void onClick(View view){
-            // 名前入力欄であるEditTextオブジェクトを取得
+        public void onClick(View view) {
+
             EditText input = findViewById(R.id.etName);
-            //メッセージを表示するTextViewオブジェクトを取得
+
             TextView output = findViewById(R.id.tvOutput);
-            //入力された名前文字列を取得
-            String inputStr = input.getText().toString();
-            //メッセージを表示
-            output.setText(inputStr + "さん、こんにちは！");
+
+            int id = view.getId();
+
+            switch (id) {
+
+                case R.id.btClick:
+
+                    String inputStr = input.getText().toString();
+
+                    output.setText(inputStr + "さん、こんにちは！");
+                    break;
+
+                case R.id.btClear:
+
+                    input.setText("");
+
+                    output.setText("");
+                    break;
+
+            }
         }
     }
 }
