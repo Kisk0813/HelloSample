@@ -20,7 +20,7 @@ public class HelloSampleActivity extends AppCompatActivity {
         HelloListener listener = new HelloListener();
         // 表示ボタンにリスナを設定
         btClick.sentOnClickListener(listener);
-        
+
     }
 
     /**
@@ -34,6 +34,8 @@ public class HelloSampleActivity extends AppCompatActivity {
             EditText input = findViewById(R.id.etName);
             //メッセージを表示するTextViewオブジェクトを取得
             TextView output = findViewById(R.id.tvOutput);
+            //入力された名前文字列を取得
+            String inputStr = input.getText().toString();
             //メッセージを表示
             output.setText(inputStr + "さん、こんにちは！");
         }
